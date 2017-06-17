@@ -101,7 +101,7 @@ sudo echo "<VirtualHost *:80>
         # match this virtual host. For the default virtual host (this file) this
         # value is not decisive as it is used as a last resort host regardless.
         # However, you must set it for any further virtual host explicitly.
-        ServerName futurisgood.dev
+        ServerName oc_p3.dev
         ServerAdmin webmaster@localhost
         DocumentRoot /var/www/OC_p3/web
     <Directory "/var/www/OC_p3/web">
