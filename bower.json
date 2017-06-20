@@ -1,0 +1,20 @@
+{
+  "name": "OC_p3",
+  "homepage": "https://github.com/florentingarnier/OC_p3",
+  "authors": [
+    "florentingarnier <garnier.florentin@gmail.com>"
+  ],
+  "description": "Projet 3 OpenClassrooms",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "^3.3.7"
+  }
+}

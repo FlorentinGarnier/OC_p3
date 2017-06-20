@@ -6,11 +6,13 @@ class FrontController
 {
     public function indexAction()
     {
-        return print_r("Bienvenue dans la page d'accueil");
+        require  __DIR__.'/../View/front/index.html.php';
     }
 
     public function articleAction($id)
     {
-        return print_r("Afficher l'article %d",$id);
+        var_dump($id);
+
+        echo sprintf("Afficher l'article %d", $id);
     }
 }

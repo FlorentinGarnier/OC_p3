@@ -13,8 +13,15 @@ class Router
 
         if ($query)
         {
-            var_dump($query);
-            echo 'hello';
+            switch ($query[0]){
+                case 'article':
+                    return $frontController->articleAction($query[1]);
+                    break;
+                default :
+                    header("HTTP/1.0 404 Not Found");
+            }
+
+
         } else {
             return $frontController->indexAction();
         }

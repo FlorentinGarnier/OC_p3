@@ -1,0 +1,26 @@
+{
+  "name": "oc_p3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "dependencies": {
+
+  },
+  "devDependencies": {
+    "gulp-sass": "^3.1.0",
+    "gulp": "^3.9.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/florentingarnier/OC_p3.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/florentingarnier/OC_p3/issues"
+  },
+  "homepage": "https://github.com/florentingarnier/OC_p3#readme"
+}
