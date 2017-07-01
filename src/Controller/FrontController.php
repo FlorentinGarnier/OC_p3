@@ -2,7 +2,9 @@
 
 namespace src\Controller;
 
-class FrontController
+use app\AbstractController;
+
+class FrontController extends AbstractController
 {
     public function indexAction()
     {

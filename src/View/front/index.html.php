@@ -13,6 +13,7 @@
 
     <!-- Bootstrap core CSS -->
     <link type="text/css" href="/assets/css/app.css" rel="stylesheet">
+    <link type="text/css" href="/assets/css/style.css" rel="stylesheet">
 
 
 

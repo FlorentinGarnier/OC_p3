@@ -6,13 +6,24 @@ use src\Controller\FrontController;
 
 class Router
 {
-    public function get($query)
+
+    private $request;
+
+    public function __construct(Request $request)
+    {
+        $this->request = $request;
+    }
+
+    public function get()
     {
 
         $frontController = new FrontController();
 
-        if ($query)
+
+        if ($this->request->getParam('url'))
         {
+            var_dump($this->request->getParam('url'));
+
             switch ($query[0]){
                 case 'article':
                     return $frontController->articleAction($query[1]);
