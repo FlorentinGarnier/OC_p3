@@ -1,9 +1,9 @@
 <?php
 
-namespace src\Controller\Front;
+namespace src\Front\Controller;
 
 use app\Database;
-use src\Model\Billet;
+use src\Front\Model\Billet;
 
 class ArticleController extends FrontController
 {
@@ -23,7 +23,7 @@ class ArticleController extends FrontController
         $billet = $billetEntity->getOne($id);
 
 
-        return $this->sendView('../src/View/Front/index.html.php', [
+        return $this->sendView('../src/Front/View/index.html.php', [
             "billet" => $billet
         ]);
     }

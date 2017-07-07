@@ -2,7 +2,7 @@
 
 namespace app;
 
-use src\View\View;
+use src\Front\View\View;
 
 abstract class AbstractController
 {

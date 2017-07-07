@@ -6,7 +6,7 @@
  * Time: 14:48
  */
 
-namespace src\Model;
+namespace src\Front\Model;
 
 
 use app\AbstractModel;

@@ -1,10 +1,10 @@
 <?php
 
-namespace src\Controller\Front;
+namespace src\Front\Controller;
 
 use app\AbstractController;
 use app\Database;
-use src\Model\Billet;
+use src\Front\Model\Billet;
 
 abstract class FrontController extends AbstractController
 {
@@ -18,7 +18,7 @@ abstract class FrontController extends AbstractController
 
         $billet = $billetObj->getAll();
 
-        return $this->sendView('../src/View/Front/index.html.php', [
+        return $this->sendView('../src/Front/View/index.html.php', [
             'billet' => $billet
         ]);
     }

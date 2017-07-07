@@ -6,7 +6,7 @@
  * Time: 15:06
  */
 
-namespace src\View;
+namespace src\Front\View;
 
 
 use app\AbstractView;

@@ -16,7 +16,7 @@ $router = new Router(Request::getRequest());
 /*
  * Déclaration des pseudos Routes
  */
-$router->add('article', 'src\\Controller\\Front\\ArticleController');
+$router->add('article', 'src\\Front\\Controller\\ArticleController');
 
 
 $app = new Application($router);

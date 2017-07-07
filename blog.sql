@@ -84,44 +84,24 @@ CREATE TABLE IF NOT EXISTS billet(
 
 CREATE TABLE IF NOT EXISTS commentary(
   id INT AUTO_INCREMENT PRIMARY KEY,
+  billet_id INT,
   content VARCHAR(45) NOT NULL,
   createdAt DATETIME NOT NULL,
   updatedAt DATETIME,
+  commentary_id INT,
+  UNIQUE INDEX id_UNIQUE (id ASC),
+  CONSTRAINT fk_commentary
+  FOREIGN KEY (commentary_id)
+    REFERENCES commentary(id),
+  CONSTRAINT fk_billet
+  FOREIGN KEY (billet_id)
+    REFERENCES billet(id),
+  INDEX fk_commentary_idx (commentary_id ASC),
+  INDEX billet_id_idx (billet_id ASC),
   UNIQUE INDEX id_UNIQUE (id ASC)
 
 )
   ENGINE = INNODB;
 
--- Table billet has commentary
--- ---------------------------
-
-CREATE TABLE IF NOT EXISTS billet_has_commentary(
-  billet_id INT,
-  commentary_id INT,
-  CONSTRAINT fk_billet_id
-  FOREIGN KEY (billet_id)
-    REFERENCES billet(id),
-  CONSTRAINT fk_billet_has_commentary_id
-  FOREIGN KEY (commentary_id)
-    REFERENCES commentary(id),
-  PRIMARY KEY (billet_id, commentary_id)
-
-)
-  ENGINE = INNODB;
 
 
--- Table commentary has commentary
--- -------------------------------
-
-CREATE TABLE IF NOT EXISTS commentary_has_commentary(
-  commentary_id INT,
-  child_commentary_id INT,
-  PRIMARY KEY (commentary_id, child_commentary_id),
-  CONSTRAINT fk_commentary_id
-    FOREIGN KEY (commentary_id)
-    REFERENCES commentary(id),
-  CONSTRAINT fk_child_commentary_id
-  FOREIGN KEY (child_commentary_id)
-    REFERENCES commentary(id)
-)
-  ENGINE = INNODB;
