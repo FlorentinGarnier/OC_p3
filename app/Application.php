@@ -17,6 +17,11 @@ class Application
      */
     private $router;
 
+    /**
+     * @var Response
+     */
+    private $taxiway;
+
     public function __construct(Router $router)
     {
 
@@ -31,8 +36,13 @@ class Application
      */
     public function start()
     {
-        $this->router->get();
+        $this->taxiway = $this->router->get();
     }
 
+
+    public function sendResponse()
+    {
+        $this->taxiway->takeOff();
+    }
 
 }

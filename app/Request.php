@@ -5,12 +5,14 @@ namespace app;
 class Request
 {
 
-    const __ROOT_DIR__ = __DIR__ . "/../";
+
 
     /**
      * @var $get array
      */
     private $param;
+
+    private static $request;
 
     private $post;
 
@@ -24,17 +26,23 @@ class Request
 
     public static function getRequest()
     {
-        return new Request();
+
+        if (self::$request){
+            return self::$request;
+        } else return new Request();
     }
 
 
-
     /**
-     * @return array
+     * @param $name
+     * @return string
      */
     public function getParam($name)
     {
-        return $this->param[$name];
+        if (isset($this->param[$name])) {
+            return $this->param[$name];
+        } else return null;
+
     }
 
     /**

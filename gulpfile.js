@@ -4,11 +4,11 @@ var gulp = require('gulp');
 var sass = require('gulp-sass');
 
 gulp.task('sass', function () {
-    return gulp.src('./src/View/front/scss/*.scss')
+    return gulp.src('./src/View/scss/*.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest('./web/assets/css'));
 });
 
 gulp.task('sass:watch', function () {
-    gulp.watch('./src/View/front/scss', ['sass']);
+    gulp.watch('./src/View/scss', ['sass']);
 });

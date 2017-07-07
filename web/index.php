@@ -5,12 +5,21 @@ use app\Autoloader;
 use app\Request;
 use app\Router;
 
+const __ROOT_DIR__ = __DIR__ . "/../";
+
 require '../app/Autoloader.php';
 
 Autoloader::register();
 
-$request = Request::getRequest();
-$router = new Router($request);
+$router = new Router(Request::getRequest());
+
+/*
+ * Déclaration des pseudos Routes
+ */
+$router->add('article', 'src\\Controller\\Front\\ArticleController');
+
+
 $app = new Application($router);
 
 $app->start();
+$app->sendResponse();

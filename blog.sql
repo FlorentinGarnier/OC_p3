@@ -32,7 +32,9 @@ CREATE TABLE IF NOT EXISTS user (
   roles_id INT,
   CONSTRAINT fk_roles
   FOREIGN KEY (roles_id)
-    REFERENCES roles(id)
+    REFERENCES roles(id),
+  INDEX fk_roles_idx (roles_id ASC),
+  UNIQUE INDEX id_UNIQUE (id ASC)
 
 )
   ENGINE=INNODB;
@@ -45,7 +47,9 @@ CREATE TABLE IF NOT EXISTS category(
   id INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(255),
   createdAt DATETIME NOT NULL,
-  updatedAt DATETIME
+  updatedAt DATETIME,
+  UNIQUE INDEX id_UNIQUE (id ASC)
+
 )
   ENGINE = INNODB;
 
@@ -60,9 +64,16 @@ CREATE TABLE IF NOT EXISTS billet(
   createdAt DATETIME NOT NULL,
   updatedAt DATETIME,
   category_id INT,
+  user_id INT,
+  CONSTRAINT fk_user
+  FOREIGN KEY (user_id)
+    REFERENCES user(id),
   CONSTRAINT fk_category
   FOREIGN KEY (category_id)
-    REFERENCES category(id)
+    REFERENCES category(id),
+  INDEX fk_category_idx (category_id ASC),
+  UNIQUE INDEX id_UNIQUE (id ASC)
+
 
 )
   ENGINE = INNODB;
@@ -75,7 +86,9 @@ CREATE TABLE IF NOT EXISTS commentary(
   id INT AUTO_INCREMENT PRIMARY KEY,
   content VARCHAR(45) NOT NULL,
   createdAt DATETIME NOT NULL,
-  updatedAt DATETIME
+  updatedAt DATETIME,
+  UNIQUE INDEX id_UNIQUE (id ASC)
+
 )
   ENGINE = INNODB;
 
@@ -92,6 +105,7 @@ CREATE TABLE IF NOT EXISTS billet_has_commentary(
   FOREIGN KEY (commentary_id)
     REFERENCES commentary(id),
   PRIMARY KEY (billet_id, commentary_id)
+
 )
   ENGINE = INNODB;
 
