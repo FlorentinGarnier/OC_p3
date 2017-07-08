@@ -6,12 +6,13 @@ interface  ViewInterface
 {
 
     /**
+     * @param $view
      * @param array $param
+     * @return
      * @Return string
      *
      * Generate view to send to the Response
-     *
      */
-     function generate($param = []);
+     function generate($view, $param = []);
 
 }

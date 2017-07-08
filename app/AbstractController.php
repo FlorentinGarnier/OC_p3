@@ -2,7 +2,8 @@
 
 namespace app;
 
-use src\Front\View\ViewInterface;
+
+use app\Interfaces\ViewInterface;
 
 abstract class AbstractController
 {
@@ -12,7 +13,7 @@ abstract class AbstractController
     protected $router;
     protected $view;
 
-    public function __construct(Request $request, Response $response, Router $router, \app\Interfaces\ViewInterface $view)
+    public function __construct(Request $request, Response $response, Router $router, ViewInterface $view)
     {
         $this->request = $request;
         $this->response = $response;
@@ -34,10 +35,10 @@ abstract class AbstractController
      * @param array|null $params
      * @return Response
      */
-    protected function sendView($params = [])
+    protected function render($view, $params = [])
     {
 
-        $this->response->setContent($this->view->generate($params));
+        $this->response->setContent($this->view->generate($view, $params));
 
         return $this->response;
     }

@@ -11,13 +11,14 @@ You can use Vagrant to easier set the dev environnement.
 
 `vagrant up`
 
-###Install
+### Install
 
 `composer install`
 
 
 `npm install`
 
+`bower install`
 
 `gulp sass`
 

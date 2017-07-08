@@ -18,7 +18,7 @@ abstract class FrontController extends AbstractController
 
         $billet = $billetObj->getAll();
 
-        return $this->sendView([
+        return $this->render(':article:list',[
             'billets' => $billet
         ]);
     }

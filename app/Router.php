@@ -2,8 +2,6 @@
 
 namespace app;
 
-use src\Front\Controller\ArticleController;
-use src\Front\View\View;
 
 
 class Router
@@ -19,7 +17,7 @@ class Router
     }
 
     /**
-     * @return Response|void
+     *
      */
     public function get()
     {
@@ -33,7 +31,14 @@ class Router
             foreach ($this->controller as $controllerClass){
 
                 if (class_exists($controllerClass)) {
-                    $controllerInstance = new $controllerClass($this->request, new Response(), $this, new View());
+
+
+                    $controllerInstance = new $controllerClass(
+                        $this->request,
+                        new Response(),
+                        $this,
+                        new View(dirname((new \ReflectionClass($controllerClass))->getFileName()))
+                    );
 
                     $action = $this->request->getParam('action');
 
@@ -51,9 +56,7 @@ class Router
 
 
         } else {
-            $controller = new ArticleController($this->request, new Response(), $this, new View());
-
-            return $controller->indexAction();
+           return $this->redirect('article', 'index');
         }
 
     }
@@ -68,7 +71,7 @@ class Router
     public function redirect($controller, $action)
     {
         $controller = $this->controller[$controller];
-        $Controller = new $controller($this->request, new Response(), $this);
+        $Controller = new $controller($this->request, new Response(), $this, new View(dirname((new \ReflectionClass($controller))->getFileName())));
 
         return $Controller->{$action.'Action'}();
     }
