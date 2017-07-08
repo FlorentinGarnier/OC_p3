@@ -2,7 +2,8 @@
 
 namespace app;
 
-use src\Controller\Front\ArticleController;
+use src\Front\Controller\ArticleController;
+use src\Front\View\View;
 
 
 class Router
@@ -32,7 +33,7 @@ class Router
             foreach ($this->controller as $controllerClass){
 
                 if (class_exists($controllerClass)) {
-                    $controllerInstance = new $controllerClass($this->request, new Response(), $this);
+                    $controllerInstance = new $controllerClass($this->request, new Response(), $this, new View());
 
                     $action = $this->request->getParam('action');
 
@@ -50,7 +51,7 @@ class Router
 
 
         } else {
-            $controller = new ArticleController($this->request, new Response(), $this);
+            $controller = new ArticleController($this->request, new Response(), $this, new View());
 
             return $controller->indexAction();
         }
@@ -76,7 +77,7 @@ class Router
      * @param $param
      * @param $controller
      *
-     * Collection of application pseudo route.
+     * Collect application pseudo route.
      */
     public function add($param, $controller)
     {

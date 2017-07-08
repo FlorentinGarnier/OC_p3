@@ -18,8 +18,8 @@ abstract class FrontController extends AbstractController
 
         $billet = $billetObj->getAll();
 
-        return $this->sendView('../src/Front/View/index.html.php', [
-            'billet' => $billet
+        return $this->sendView([
+            'billets' => $billet
         ]);
     }
 }
