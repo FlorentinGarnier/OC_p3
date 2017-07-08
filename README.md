@@ -7,10 +7,18 @@ This application was performed as part of my studies with OpenClassrooms for Dig
 Installation
 ------------
 
-Install front dependencies
+You can use Vagrant to easier set the dev environnement.
+
+`vagrant up`
+
+###Install
+
+`composer install`
 
 
 `npm install`
 
 
 `gulp sass`
+
+
