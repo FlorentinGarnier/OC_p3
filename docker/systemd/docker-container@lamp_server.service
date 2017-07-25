@@ -1,0 +1,13 @@
+[Unit]
+Description=Docker Container %I
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+WorkingDirectory=/home/cdsl/dockerapache/
+ExecStart=/usr/local/bin/docker-compose -f /home/cdsl/dockerapache/docker-compose.yml up
+ExecStop=/usr/local/bin/docker-compose -f /home/cdsl/dockerapache/docker-compose.yml down
+
+[Install]
+WantedBy=default.target

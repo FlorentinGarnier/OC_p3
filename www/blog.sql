@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS billet(
 -- ----------------
 
 CREATE TABLE IF NOT EXISTS commentary(
-  id INT AUTO_INCREMENT PRIMARY KEY,
+  id INT AUTO_INCREMENT PRIMARY KEY ,
   billet_id INT,
   content VARCHAR(45) NOT NULL,
   createdAt DATETIME NOT NULL,
@@ -97,8 +97,7 @@ CREATE TABLE IF NOT EXISTS commentary(
   FOREIGN KEY (billet_id)
     REFERENCES billet(id),
   INDEX fk_commentary_idx (commentary_id ASC),
-  INDEX billet_id_idx (billet_id ASC),
-  UNIQUE INDEX id_UNIQUE (id ASC)
+  INDEX billet_id_idx (billet_id ASC)
 
 )
   ENGINE = INNODB;
