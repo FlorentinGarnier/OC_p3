@@ -1,8 +1,6 @@
 <?php
 
 
-
-
 namespace src\User\Controller;
 
 
@@ -15,18 +13,14 @@ class UserController extends AbstractController
     public function loginAction()
     {
 
-        if ($this->getRequest()->getPost()){
+        if ($this->getRequest()->getPost()) {
 
             $userEntity = new UserModel(new Database());
 
 
-
-            if (!$userEntity->getUserByUsername($this->getRequest()->getPost('username'))){
+            if (!$userEntity->getUserByUsername($this->getRequest()->getPost('username'))) {
                 die ('You should not pass');
             };
-
-
-
 
 
         }
