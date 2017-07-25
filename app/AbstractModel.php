@@ -7,8 +7,8 @@ use PDO;
 abstract class AbstractModel
 {
 
-    private $entity;
-    private $database;
+    protected $entity;
+    protected $database;
 
     /**
      * AbstractModel constructor.
@@ -35,7 +35,7 @@ abstract class AbstractModel
         $statement =$this->database->prepare("SELECT * FROM $this->entity WHERE `id` = ?");
         $statement->execute([$id]);
 
-        return $statement->fetchAll(PDO::FETCH_CLASS, get_class($this), [new Database()]);
+        return $statement->fetchObject( get_class($this), [new Database()]);
     }
 
     private function setEntity()

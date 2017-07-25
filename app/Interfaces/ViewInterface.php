@@ -15,4 +15,13 @@ interface  ViewInterface
      */
      function generate($view, $param = []);
 
+    /**
+     * Generate Url to controller in front
+     *
+     * @param $controller
+     * @param $action
+     * @param array $param
+     */
+    public function getUrl($controller, $action, $params = []);
+
 }

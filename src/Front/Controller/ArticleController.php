@@ -22,9 +22,8 @@ class ArticleController extends FrontController
 
         $billet = $billetEntity->getOne($id);
 
-
-        return $this->render(':article:list',[
-            "billets" => $billet
+        return $this->render(':article:one',[
+            "billet" => $billet
         ]);
     }
 }

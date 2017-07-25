@@ -26,32 +26,29 @@ class Router
 
         if (!empty($controller)) {
 
-            //Récupère les pseudo route initialisé
 
-            foreach ($this->controller as $controllerClass){
-
-                if (class_exists($controllerClass)) {
+                if (class_exists($this->controller[$controller])) {
 
 
-                    $controllerInstance = new $controllerClass(
+                    $controllerInstance = new $this->controller[$controller](
                         $this->request,
                         new Response(),
                         $this,
-                        new View(dirname((new \ReflectionClass($controllerClass))->getFileName()))
+                        new View(dirname((new \ReflectionClass($this->controller[$controller]))->getFileName()))
                     );
-
                     $action = $this->request->getParam('action');
 
                     if ($action && method_exists($controllerInstance, strtolower($action) . 'Action')) {
+
                         return $controllerInstance->{$action . 'Action'}();
-                    } else return $controllerInstance->indexAction();
+                    } else return header("HTTP/1.0 404 Not Found");
 
 
                 } else {
                     return header("HTTP/1.0 404 Not Found");
                 }
 
-            }
+
 
 
 
@@ -66,14 +63,16 @@ class Router
      * @param $controller
      *
      * Redirect to another controller
+     * @param $action
+     * @param array $param
      * @return Response
      */
-    public function redirect($controller, $action)
+    public function redirect($controller, $action, $param = [])
     {
         $controller = $this->controller[$controller];
         $Controller = new $controller($this->request, new Response(), $this, new View(dirname((new \ReflectionClass($controller))->getFileName())));
 
-        return $Controller->{$action.'Action'}();
+        return $Controller->{$action.'Action'}($param);
     }
 
     /**

@@ -14,7 +14,7 @@ use app\Interfaces\ViewInterface;
 class View implements ViewInterface
 {
 
-    const LAYOUT = __ROOT_DIR__ . 'app/Resources/Layout/index.html.php';
+    const _LAYOUT_ = __ROOT_DIR__ . 'app/Resources/Layout/index.html.php';
     private $viewPath;
 
     public function __construct($viewPath)
@@ -41,8 +41,28 @@ class View implements ViewInterface
 
         $content = ob_get_clean();
 
-        require  self::LAYOUT;
+        require  self::_LAYOUT_;
 
+    }
+
+    /**
+     * Generate Url to controller in front
+     *
+     * @param $controller
+     * @param $action
+     * @param array $param
+     */
+    public function getUrl($controller, $action, $params = [])
+    {
+        $results = null;
+        if ($params){
+            foreach ($params as $k => $param){
+
+                $results .= '&' .$k . '=' .$param;
+            }
+        }
+
+        echo 'http://'. $_SERVER['SERVER_NAME'] . ':8888/index.php?controller='. $controller .'&action='. $action . $results ;
     }
 
 

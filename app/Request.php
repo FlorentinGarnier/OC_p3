@@ -56,8 +56,12 @@ class Request
     /**
      * @return mixed
      */
-    public function getPost()
+    public function getPost($param = null)
     {
+        if ($param){
+            return $this->post[$param];
+        }
+
         return $this->post;
     }
 
