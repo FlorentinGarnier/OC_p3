@@ -1,8 +1,5 @@
 <?php
 
-
-
-
 namespace src\User\Controller;
 
 
