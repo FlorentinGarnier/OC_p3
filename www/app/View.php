@@ -62,7 +62,7 @@ class View implements ViewInterface
             }
         }
 
-        echo 'http://'. $_SERVER['SERVER_NAME'] . ':8888/index.php?controller='. $controller .'&action='. $action . $results ;
+        echo 'http://'. $_SERVER['SERVER_NAME'] . '/index.php?controller='. $controller .'&action='. $action . $results ;
     }
 
 

@@ -1,16 +1,19 @@
 'use strict';
 
-var gulp = require('gulp');
-var sass = require('gulp-sass');
+var gulp = require('gulp'),
+    sass = require('gulp-sass'),
+    notify = require('gulp-notify')
+;
 
-const SOURCE_PATH = './src'
+const SOURCE_PATH = './web/scss/';
+const STYLESHEET_DEST_PATH = './web/assets/css/';
 
 gulp.task('sass', function () {
-    return gulp.src('./src/Front/Ressource/scss/*.scss')
+    return gulp.src(SOURCE_PATH + '/**/*.scss')
         .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./web/assets/css'));
+        .pipe(gulp.dest(STYLESHEET_DEST_PATH));
 });
 
 gulp.task('sass:watch', function () {
-    gulp.watch('./src/Front/Ressource/scss', ['sass']);
+    gulp.watch(SOURCE_PATH, ['sass']);
 });
