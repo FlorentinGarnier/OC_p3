@@ -36,6 +36,8 @@ class Application
      */
     public function start()
     {
+        session_start();
+
         $this->taxiway = $this->router->get();
     }
 
