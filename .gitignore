@@ -5,3 +5,4 @@ ubuntu-xenial-16.04-cloudimg-console.log
 /www/config/database.ini
 /www/bower_components/
 /www/package-lock.json
+/www/web/assets/

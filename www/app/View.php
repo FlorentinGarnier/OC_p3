@@ -10,6 +10,7 @@ namespace app;
 
 
 use app\Interfaces\ViewInterface;
+use src\User\Model\UserModel;
 
 class View implements ViewInterface
 {
@@ -32,6 +33,12 @@ class View implements ViewInterface
     {
 
 
+        //get user if he is connected
+
+        if (isset($_SESSION['user']) ){
+            $user = new UserModel(new Database());
+            $user =  $user->findOne($_SESSION['user']['id']);
+        }
 
         extract($param);
 

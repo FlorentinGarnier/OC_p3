@@ -21,7 +21,7 @@ abstract class AbstractModel
     }
 
 
-    public function getAll()
+    public function findAll()
     {
 
         $statement = $this->database->query("SELECT * FROM $this->entity");
@@ -30,7 +30,7 @@ abstract class AbstractModel
         return $data;
     }
 
-    public function getOne($id)
+    public function findOne($id)
     {
         $statement =$this->database->prepare("SELECT * FROM $this->entity WHERE `id` = ?");
         $statement->execute([$id]);
@@ -42,6 +42,7 @@ abstract class AbstractModel
     {
         $entity = explode('\\', get_class($this));
         $entity = strtolower(array_pop($entity));
+        $entity = str_replace('model', '', $entity);
 
         $this->entity = $entity;
     }

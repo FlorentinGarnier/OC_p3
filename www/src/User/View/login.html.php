@@ -2,8 +2,8 @@
     <div class="col-xs-12">
         <form action="" method="POST">
             <div class="form-group">
-                <label for="username">Nom d'utilisateur</label>
-                <input class="form-control" id="username" type="text" name="username">
+                <label for="email">Email</label>
+                <input class="form-control" id="email" type="text" name="email">
             </div>
             <div class="form-group">
                 <label for="password">Mot de passe</label>

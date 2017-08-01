@@ -4,7 +4,7 @@ namespace src\Front\Controller;
 
 use app\AbstractController;
 use app\Database;
-use src\Front\Model\Billet;
+use src\Front\Model\BilletModel;
 
 abstract class FrontController extends AbstractController
 {
@@ -14,9 +14,9 @@ abstract class FrontController extends AbstractController
     public function indexAction()
     {
 
-       $billetObj = new Billet(new Database());
+       $billetObj = new BilletModel(new Database());
 
-        $billet = $billetObj->getAll();
+        $billet = $billetObj->findAll();
 
         return $this->render(':article:list',[
             'billets' => $billet

@@ -22,12 +22,46 @@ class Application
      */
     private $taxiway;
 
+
+
     public function __construct(Router $router)
     {
-
-        $this->router = $router;
+        $this->setRouter($router);
 
     }
+
+    /**
+     * @return array
+     */
+    public function getRouter()
+    {
+        return $this->router;
+    }
+
+    /**
+     * @param  Router $router
+     */
+    public function setRouter($router)
+    {
+        $this->router = $router;
+    }
+
+    /**
+     * @return Response
+     */
+    public function getTaxiway()
+    {
+        return $this->taxiway;
+    }
+
+    /**
+     * @param Response $taxiway
+     */
+    public function setTaxiway($taxiway)
+    {
+        $this->taxiway = $taxiway;
+    }
+
 
 
 
@@ -36,7 +70,7 @@ class Application
      */
     public function start()
     {
-        session_start();
+
 
         $this->taxiway = $this->router->get();
     }

@@ -40,7 +40,7 @@ class Router
 
                     if ($action && method_exists($controllerInstance, strtolower($action) . 'Action')) {
 
-                        return $controllerInstance->{$action . 'Action'}();
+                        return $controllerInstance->{$action . 'Action'}($this->request);
                     } else return header("HTTP/1.0 404 Not Found");
 
 

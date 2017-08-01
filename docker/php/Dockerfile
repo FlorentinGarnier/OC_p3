@@ -34,6 +34,14 @@ RUN { \
 RUN { \
                 echo '[xdebug]'; \
                 echo 'xdebug.default_enable = 1'; \
+                echo 'xdebug.remote_enable = 1'; \
+                echo 'xdebug.remote_autostart = 0'; \
+                echo 'xdebug.profiler_enable = 1'; \
+                echo 'xdebug.idekey = PHPSTORM'; \
+                echo 'xdebug.remote_host = 172.19.0.1'; \
+                echo 'xdebug.remote_port = 9000'; \
+                echo 'xdebug.remote_connect_back = 1'; \
+
         } >> /usr/local/etc/php/conf.d/xdebug.ini
 
 

@@ -3,14 +3,16 @@
 namespace src\Front\Controller;
 
 use app\Database;
-use src\Front\Model\Billet;
+use app\Request;
+use src\Front\Model\BilletModel;
 
 class ArticleController extends FrontController
 {
 
 
-    public function showAction()
+    public function showAction(Request $request)
     {
+
         $id = $this->getRequest()->getParam('id');
 
         if (empty($id)) {
@@ -18,9 +20,9 @@ class ArticleController extends FrontController
         }
 
 
-        $billetEntity = new Billet(new Database());
+        $billetEntity = new BilletModel(new Database());
 
-        $billet = $billetEntity->getOne($id);
+        $billet = $billetEntity->findOne($id);
 
         return $this->render(':article:one',[
             "billet" => $billet

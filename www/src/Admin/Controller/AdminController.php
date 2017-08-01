@@ -16,6 +16,9 @@ class AdminController extends AbstractController
     public function indexAction()
     {
 
+        return $this->render(':index');
     }
+
+
 
 }

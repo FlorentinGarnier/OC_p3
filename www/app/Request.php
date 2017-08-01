@@ -16,20 +16,55 @@ class Request
 
     private $post;
 
+    private $method;
+
+    private $session;
+
+
+
+
 
     public function __construct()
     {
-        $this->param = $_GET;
-        $this->post = $_POST;
+        $this->setParam($_GET);
+        $this->setPost($_POST);
+        $this->setMethod($_SERVER['REQUEST_METHOD']);
+        $this->session = $_SESSION;
 
     }
 
+
+    /**
+     * @return Request
+     */
     public static function getRequest()
     {
 
         if (self::$request){
             return self::$request;
         } else return new Request();
+    }
+    /**
+     * @return mixed
+     */
+    public function getSession($element)
+    {
+        if (isset($this->session[$element])){
+            return $this->session[$element];
+        }
+
+        return false;
+    }
+
+    /**
+     * @param $elm
+     * @param $value
+     * @internal param mixed $session
+     */
+    public function setSession($type, $elm, $value)
+    {
+        $_SESSION[$type][$elm] = $value;
+        return $this;
     }
 
 
@@ -58,11 +93,17 @@ class Request
      */
     public function getPost($param = null)
     {
-        if ($param){
-            return $this->post[$param];
-        }
 
-        return $this->post;
+            if ($param){
+                if (isset ($this->post[$param])){
+
+                    return $this->post[$param];
+
+                }
+            }
+
+
+        return false;
     }
 
     /**
@@ -72,5 +113,41 @@ class Request
     {
         $this->post = $post;
     }
+
+    /**
+     * @return array
+     */
+    public function getMethod()
+    {
+        return $this->method;
+    }
+
+    /**
+     * @param array $method
+     */
+    public function setMethod($method)
+    {
+        $this->method = $method;
+    }
+
+    public function isPost()
+    {
+        if ($this->getMethod() === 'POST'){
+            return true;
+        }
+
+        return false;
+    }
+
+    public function isGet()
+    {
+        if ($this->getMethod() === 'GET'){
+            return true;
+        }
+
+        return false;
+    }
+
+
 
 }

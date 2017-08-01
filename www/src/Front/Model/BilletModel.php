@@ -12,7 +12,7 @@ namespace src\Front\Model;
 use app\AbstractModel;
 use app\Database;
 
-class Billet extends AbstractModel
+class BilletModel extends AbstractModel
 {
     private $id;
 
@@ -29,6 +29,24 @@ class Billet extends AbstractModel
     private $user_id;
 
 
+    public function save(BilletModel $billetModel)
+    {
+
+        $statement = $this->database->prepare(
+            '
+INSERT INTO billet
+SET title = ?, content = ?, createdAt =  NOW()
+');
+
+        $statement->execute([
+            $billetModel->getTitle(),
+            $billetModel->getContent(),
+
+        ]);
+        return $this;
+
+
+    }
 
     /**
      * @return mixed
@@ -40,10 +58,12 @@ class Billet extends AbstractModel
 
     /**
      * @param mixed $title
+     * @return $this
      */
     public function setTitle($title)
     {
         $this->title = $title;
+        return $this;
     }
 
     /**
@@ -56,10 +76,12 @@ class Billet extends AbstractModel
 
     /**
      * @param mixed $content
+     * @return $this
      */
     public function setContent($content)
     {
         $this->content = $content;
+        return $this;
     }
 
     /**

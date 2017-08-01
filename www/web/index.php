@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 use app\Application;
 use app\Autoloader;
@@ -19,7 +20,7 @@ $router = new Router(Request::getRequest());
 $router->add('article', 'src\\Front\\Controller\\ArticleController');
 $router->add('admin', 'src\\Admin\\Controller\\AdminController');
 $router->add('user', 'src\\User\\Controller\\UserController');
-
+$router->add('admin_article', 'src\\Admin\\Controller\\BilletController');
 
 $app = new Application($router);
 

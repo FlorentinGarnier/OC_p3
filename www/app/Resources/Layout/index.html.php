@@ -12,15 +12,22 @@
     <title>Jean Forteroche | Billet simple pour l'Alaska</title>
 
     <!-- Bootstrap core CSS -->
-    <link type="text/css" href="/assets/css/app.css" rel="stylesheet">
-
+    <link type="text/css" href="/assets/css/main.css" rel="stylesheet">
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
     <![endif]-->
+    <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea'
+        });
+    </script>
+
 </head>
 
 <body>
@@ -28,13 +35,14 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Billet simple pour l'Alaska</a>
+            <a class="navbar-brand" href="<?= $this->getUrl('article', 'index') ?>">Billet simple pour l'Alaska</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
@@ -43,13 +51,45 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="<?= $this->getUrl('user', 'login') ?>">Connexion</a></li>
+                <? if (isset($user) && $user) :?>
+                    <li><a href="">Bienvenue <?= $user->getFirstname() ?></a></li>
+                    <? if ($user->getRoles() == 'SUPER_ADMIN' ||
+                            $user->getRoles() == 'ADMIN') : ?>
+                        <li><a href="<?= $this->getUrl('admin', 'index') ?>">Administration</a></li>
+                        <? endif ?>
+                    <li><a href="<?= $this->getUrl('user', 'logout') ?>">Se déconnecter</a></li>
+                <? else : ?>
+
+                    <li><a href="<?= $this->getUrl('user', 'login') ?>">Connexion</a></li>
+                    <li><a href="<?= $this->getUrl('user', 'register') ?>">Créer un compte</a></li>
+
+                <? endif ?>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
 </nav>
 
+
 <div class="container">
+
+    <?php if (isset($_SESSION['message'])) : ?>
+        <?php foreach ($_SESSION['message'] as $k => $item) : ?>
+
+            <div class="row">
+                <div class="col-sm-4 col-sm-offset-8">
+                    <div class="alert alert-<?= $k ?> alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                        <?= $item ?>
+                    </div>
+                </div>
+            </div>
+
+        <?php endforeach ?>
+        <?php unset($_SESSION['message']); ?>
+
+
+    <?php endif ?>
 
     <?= $content ?>
 
@@ -60,11 +100,8 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-<script src="../../dist/js/bootstrap.min.js"></script>
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+<script src="/assets/js/main.js"></script>
+
 </body>
 </html>
 
