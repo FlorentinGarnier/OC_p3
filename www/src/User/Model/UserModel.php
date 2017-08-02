@@ -8,7 +8,6 @@ use app\Database;
 class UserModel extends AbstractModel
 {
 
-    private $id;
 
     private $firstname;
 

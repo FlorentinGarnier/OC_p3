@@ -2,11 +2,13 @@
 
 namespace app;
 
+use app\Interfaces\ModelInterface;
 use PDO;
 
-abstract class AbstractModel
+abstract class AbstractModel implements ModelInterface
 {
 
+    protected $id;
     protected $entity;
     protected $database;
 
@@ -45,6 +47,14 @@ abstract class AbstractModel
         $entity = str_replace('model', '', $entity);
 
         $this->entity = $entity;
+    }
+
+    public function delete()
+    {
+        $statement = $this->database->prepare("DELETE FROM $this->entity WHERE id = ?");
+        $statement->execute([$this->id]);
+
+        return true;
     }
 
 }

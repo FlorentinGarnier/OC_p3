@@ -47,10 +47,10 @@ class Request
     /**
      * @return mixed
      */
-    public function getSession($element)
+    public function getSession($type)
     {
-        if (isset($this->session[$element])){
-            return $this->session[$element];
+        if (isset($this->session[$type])){
+            return $this->session[$type];
         }
 
         return false;

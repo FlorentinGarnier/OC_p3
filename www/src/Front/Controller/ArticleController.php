@@ -13,7 +13,7 @@ class ArticleController extends FrontController
     public function showAction(Request $request)
     {
 
-        $id = $this->getRequest()->getParam('id');
+        $id = $request->getParam('id');
 
         if (empty($id)) {
             $this->router->redirect('article', 'index');

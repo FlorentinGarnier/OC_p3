@@ -4,6 +4,7 @@ namespace app;
 
 
 use app\Interfaces\ViewInterface;
+use src\User\Model\UserModel;
 
 abstract class AbstractController
 {
@@ -13,12 +14,22 @@ abstract class AbstractController
     protected $router;
     protected $view;
 
+    /**
+     * @var UserModel
+     */
+    protected $user;
+
     public function __construct(Request $request, Response $response, Router $router, ViewInterface $view)
     {
         $this->request = $request;
         $this->response = $response;
         $this->router = $router;
         $this->view = $view;
+
+        if (null !== $request->getSession('user')){
+            $userEntity = new UserModel(new Database());
+            $this->user = $userEntity->findOne($request->getSession('user')['id']);
+        }
 
     }
 

@@ -25,7 +25,6 @@ class UserController extends AbstractController
 
 
             if ($user) {
-            var_dump($user);
                 if (password_verify($this->getRequest()->getPost('password'), $user->getPassword())){
 
                     if ($request->getSession('user'))
@@ -41,9 +40,6 @@ class UserController extends AbstractController
             }else {
                 die('you should not pass');
             };
-
-
-
 
 
         }

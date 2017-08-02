@@ -14,7 +14,6 @@ use app\Database;
 
 class BilletModel extends AbstractModel
 {
-    private $id;
 
     private $title;
 
