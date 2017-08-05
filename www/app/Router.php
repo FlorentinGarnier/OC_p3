@@ -72,7 +72,7 @@ class Router
         $controller = $this->controller[$controller];
         $Controller = new $controller($this->request, new Response(), $this, new View(dirname((new \ReflectionClass($controller))->getFileName())));
 
-        return $Controller->{$action.'Action'}($param);
+        return $Controller->{$action.'Action'}($this->request, $param);
     }
 
     /**

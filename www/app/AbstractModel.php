@@ -23,10 +23,10 @@ abstract class AbstractModel implements ModelInterface
     }
 
 
-    public function findAll()
+    public function findAll($option = null)
     {
 
-        $statement = $this->database->query("SELECT * FROM $this->entity");
+        $statement = $this->database->query("SELECT * FROM " . $this->entity . " " . $option );
         $data = $statement->fetchAll(PDO::FETCH_CLASS, get_class($this), [new Database()]);
 
         return $data;

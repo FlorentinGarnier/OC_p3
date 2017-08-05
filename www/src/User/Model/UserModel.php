@@ -23,6 +23,11 @@ class UserModel extends AbstractModel
 
     private $roles;
 
+    public function __construct(Database $database)
+    {
+        parent::__construct($database);
+
+    }
 
     /**
      * @return mixed
@@ -134,7 +139,7 @@ WHERE u.id = ?
     public function findUserByEmail($username)
     {
         $statement = $this->database->prepare('
-SELECT * FROM `user` AS u 
+SELECT u.id as id, u.password as password FROM `user` AS u 
 LEFT JOIN roles as r ON u.roles_id = r.id
 WHERE `email` = ?
     ');

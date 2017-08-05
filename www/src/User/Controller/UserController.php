@@ -13,37 +13,45 @@ use src\User\Model\UserModel;
 class UserController extends AbstractController
 {
     public function loginAction()
-    {
+    {            $request = $this->getRequest();
 
-        $request = $this->getRequest();
+        try{
 
-        if ($this->getRequest()->isPost()){
+            if ($this->getRequest()->isPost()){
 
-            $userEntity = new UserModel(new Database());
+                $userEntity = new UserModel(new Database());
 
-            $user = $userEntity->findUserByEmail($this->getRequest()->getPost('email'));
+                $user = $userEntity->findUserByEmail($this->getRequest()->getPost('email'));
 
 
-            if ($user) {
-                if (password_verify($this->getRequest()->getPost('password'), $user->getPassword())){
+                if ($user) {
+                    if (password_verify($this->getRequest()->getPost('password'), $user->getPassword())){
 
-                    if ($request->getSession('user'))
-                    {
-                        unset($_SESSION['user']);
+                        if ($request->getSession('user'))
+                        {
+                            unset($_SESSION['user']);
+                        }
+                        $request->setSession('user', 'id', $user->getId());
+
+                        return $this->router->redirect('article', 'index');
+                    } else {
+                        $request->setSession('message', 'danger', 'Email ou mot de passe incorrecte');
                     }
-                    $request->setSession('user', 'id', $user->getId());
+                }else {
 
-                    $this->router->redirect('article', 'index');
-                } else {
-                    $request->setSession('message', 'danger', 'Email ou mot de passe incorrecte');
+                    $request->setSession('message', 'danger', 'Utilisateur inconnu');
                 }
-            }else {
-                die('you should not pass');
-            };
 
+
+            }
+            return $this->render(':login');
+        } catch (\Exception $exception)
+        {
+            $request->setSession('message', 'danger', 'Une erreur est survenue');
+            return $this->router->redirect('article', 'index');
 
         }
-        return $this->render(':login');
+
     }
 
     public function logoutAction()

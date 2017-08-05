@@ -30,18 +30,28 @@ class BilletModel extends AbstractModel
 
     public function save(BilletModel $billetModel)
     {
-
-        $statement = $this->database->prepare(
-            '
+        if (!$billetModel->getId()){
+            $statement = $this->database->prepare(
+                '
 INSERT INTO billet
 SET title = ?, content = ?, createdAt =  NOW()
 ');
 
-        $statement->execute([
-            $billetModel->getTitle(),
-            $billetModel->getContent(),
+            $statement->execute([
+                $billetModel->getTitle(),
+                $billetModel->getContent(),
 
-        ]);
+            ]);
+        } else {
+            $statement = $this->database->prepare("
+            UPDATE billet SET title = ?, content = ?, updatedAt = NOW() WHERE id = ".  $billetModel->getId()
+            );
+
+            $statement->execute([
+                $billetModel->getTitle(),
+                $billetModel->getContent()
+            ]);
+        }
         return $this;
 
 

@@ -16,12 +16,23 @@ use src\Front\Model\CommentaryModel;
 
 class AdminController extends AbstractController
 {
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        $commentaryModel = new CommentaryModel(new Database());
-        $commentaries = $commentaryModel->findAll();
+        try{
+            if ($this->user->getRoles() === 'ADMIN' ||
+                $this->user->getRoles() === 'SUPER_ADMIN') {
+                $commentaryModel = new CommentaryModel(new Database());
+                $commentaries = $commentaryModel->findAll();
 
-        return $this->render(':index', ['commentaries' => $commentaries]);
+                return $this->render(':index', ['commentaries' => $commentaries]);
+            } else {
+                throw new \Exception("Accès refusés");
+            }
+        } catch (\Exception $exception) {
+            $request->setSession('message', 'danger', '<strong>Erreur : </strong>' .$exception->getMessage());
+            return $this->router->redirect('article', 'index');
+        }
+
     }
 
     public function deleteCommentaryAction(Request $request)

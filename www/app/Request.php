@@ -130,6 +130,11 @@ class Request
         $this->method = $method;
     }
 
+    /**
+     * @return bool
+     *
+     * Check if request is a POST method
+     */
     public function isPost()
     {
         if ($this->getMethod() === 'POST'){
@@ -139,6 +144,11 @@ class Request
         return false;
     }
 
+    /**
+     * @return bool
+     *
+     * Check if request is GET method
+     */
     public function isGet()
     {
         if ($this->getMethod() === 'GET'){

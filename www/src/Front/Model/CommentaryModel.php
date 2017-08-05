@@ -128,12 +128,11 @@ class CommentaryModel extends AbstractModel
     }
 
 
-    public function findAll()
+    public function findAll($option = null)
     {
         $statement = $this->database->query("
 
-SELECT * FROM `commentary` as c1 
-LEFT JOIN `commentary` as c2 ON c1.billet_id = c2.id
+SELECT c1.*, u.firstname as firstname, u.lastname as lastname, b.title as title, u.id as uid, b.id as bid  FROM `commentary` as c1 
 LEFT JOIN `user` as u ON c1.user_id = u.id
 LEFT JOIN `billet` as b ON c1.billet_id = b.id
 ");
@@ -143,6 +142,7 @@ LEFT JOIN `billet` as b ON c1.billet_id = b.id
         while ($datum = $statement->fetchObject( __CLASS__, [new Database()])){
             $data[] = $datum;
         }
+
 
         return $data;
     }
