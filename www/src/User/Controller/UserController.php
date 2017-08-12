@@ -8,12 +8,13 @@ namespace src\User\Controller;
 
 use app\AbstractController;
 use app\Database;
+use app\Request;
 use src\User\Model\UserModel;
 
 class UserController extends AbstractController
 {
-    public function loginAction()
-    {            $request = $this->getRequest();
+    public function loginAction(Request $request)
+    {           // $request = $this->getRequest();
 
         try{
 

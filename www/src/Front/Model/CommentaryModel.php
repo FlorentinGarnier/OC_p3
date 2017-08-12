@@ -4,8 +4,6 @@ namespace src\Front\Model;
 
 use app\AbstractModel;
 use app\Database;
-use PDO;
-use src\User\Model\UserModel;
 
 class CommentaryModel extends AbstractModel
 {
@@ -35,6 +33,34 @@ class CommentaryModel extends AbstractModel
      */
     private $lastname;
 
+    /**
+     * @var integer
+     */
+    private $user_id;
+
+    /**
+     * @var int
+     */
+    private $billet_id;
+
+
+    /**
+     * @return mixed
+     */
+    public function getUserId()
+    {
+        return $this->user_id;
+    }
+
+    /**
+     * @param mixed $user_id
+     * @return $this
+     */
+    public function setUserId($user_id)
+    {
+        $this->user_id = $user_id;
+        return $this;
+    }
 
     /**
      * @var string
@@ -42,9 +68,6 @@ class CommentaryModel extends AbstractModel
      * Title of commented article
      */
     private $title;
-
-
-
 
 
     /**
@@ -131,21 +154,42 @@ class CommentaryModel extends AbstractModel
     public function findAll($option = null)
     {
         $statement = $this->database->query("
-
-SELECT c1.*, u.firstname as firstname, u.lastname as lastname, b.title as title, u.id as uid, b.id as bid  FROM `commentary` as c1 
-LEFT JOIN `user` as u ON c1.user_id = u.id
-LEFT JOIN `billet` as b ON c1.billet_id = b.id
+SELECT c1.*, u.firstname AS firstname, u.lastname AS lastname, b.title AS title, u.id AS uid, b.id AS bid  FROM `commentary` AS c1 
+LEFT JOIN `user` AS u ON c1.user_id = u.id
+LEFT JOIN `billet` AS b ON c1.billet_id = b.id
 ");
 
         $data = [];
 
-        while ($datum = $statement->fetchObject( __CLASS__, [new Database()])){
+        while ($datum = $statement->fetchObject(__CLASS__, [new Database()])) {
             $data[] = $datum;
         }
 
 
         return $data;
     }
+
+    public function findByArticleId($id)
+    {
+        $statement = $this->database->prepare("
+        SELECT c.comment, c.id, c.user_id, c.billet_id, DATE_FORMAT(c.createdAt, '%e-%m-%Y à %T:%i') as createdAt, c.commentary_id, u.firstname, u.lastname 
+        FROM `commentary` AS c 
+        LEFT JOIN `user` as u ON c.user_id = u.id
+        LEFT JOIN `commentary` as c2 ON c.commentary_id = c2.id
+        WHERE c.billet_id = ?
+        ");
+
+        $statement->execute([$id]);
+
+        $data = [];
+
+        while ($datum = $statement->fetchObject(__CLASS__, [new Database()])) {
+            $data[] = $datum;
+        }
+
+        return $data;
+    }
+
 
     /**
      * @return string
@@ -189,10 +233,12 @@ LEFT JOIN `billet` as b ON c1.billet_id = b.id
 
     /**
      * @param string $comment
+     * @return $this
      */
     public function setComment($comment)
     {
         $this->comment = $comment;
+        return $this;
     }
 
     /**
@@ -205,10 +251,48 @@ LEFT JOIN `billet` as b ON c1.billet_id = b.id
 
     /**
      * @param string $title
+     * @return $this
      */
     public function setTitle($title)
     {
         $this->title = $title;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getBilletId()
+    {
+        return $this->billet_id;
+    }
+
+    /**
+     * @param int $billet_id
+     * @return $this
+     */
+    public function setBilletId($billet_id)
+    {
+        $this->billet_id = $billet_id;
+        return $this;
+    }
+
+    public function save(CommentaryModel $commentaryModel)
+    {
+        $statement = $this->database->prepare(
+            '
+INSERT INTO commentary
+SET comment = ?, user_id = ?, billet_id = ?, createdAt =  NOW()
+');
+
+        $statement->execute([
+            $commentaryModel->getComment(),
+            $commentaryModel->getUserId(),
+            $commentaryModel->getBilletId()
+            ]);
+
+        return true;
+
     }
 
 
