@@ -1,7 +1,7 @@
 <div class="row">
     <?php $i = 0 ?>
     <?php foreach ($billets as $billet): ?>
-    <div class="col-xs-4">
+    <div class="col-sm-4">
         <div class="panel panel-default">
             <div class="panel-heading card card-face">
                 <a href="<?= $this->getUrl('article', 'show', ['id' => $billet->getId()]) ?>"><h2><?= $billet->getTitle() ?></h2></a>

@@ -33,26 +33,37 @@
 <body>
 
 <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="<?= $this->getUrl('article', 'index') ?>">Accueil</a></li>
-            <?php if (isset($user) && $user) : ?>
-                <li><a href="">Bienvenue <?= $user->getFirstname() ?></a></li>
-                <?php if ($user->getRoles() == 'SUPER_ADMIN' ||
-                    $user->getRoles() == 'ADMIN'
-                ) : ?>
-                    <li><a href="<?= $this->getUrl('admin', 'index') ?>">Administration</a></li>
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="<?= $this->getUrl('article', 'index') ?>">Accueil</a></li>
+                <?php if (isset($user) && $user) : ?>
+                    <li><a href="">Bienvenue <?= $user->getFirstname() ?></a></li>
+                    <?php if ($user->getRoles() == 'SUPER_ADMIN' ||
+                        $user->getRoles() == 'ADMIN'
+                    ) : ?>
+                        <li><a href="<?= $this->getUrl('admin', 'index') ?>">Administration</a></li>
+                    <?php endif ?>
+                    <li><a href="<?= $this->getUrl('user', 'logout') ?>">Se déconnecter</a></li>
+                <?php else : ?>
+
+                    <li><a href="<?= $this->getUrl('user', 'login') ?>">Connexion</a></li>
+                    <li><a href="<?= $this->getUrl('user', 'register') ?>">Créer un compte</a></li>
+
                 <?php endif ?>
-                <li><a href="<?= $this->getUrl('user', 'logout') ?>">Se déconnecter</a></li>
-            <?php else : ?>
-
-                <li><a href="<?= $this->getUrl('user', 'login') ?>">Connexion</a></li>
-                <li><a href="<?= $this->getUrl('user', 'register') ?>">Créer un compte</a></li>
-
-            <?php endif ?>
-        </ul>
+            </ul>
+        </div>
     </div><!--/.nav-collapse -->
-    </div>
 </nav>
 
 <div class="container-fluid ">
