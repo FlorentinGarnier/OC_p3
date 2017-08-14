@@ -35,20 +35,20 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <ul class="nav navbar-nav navbar-right">
-            <? if (isset($user) && $user) : ?>
+            <?php if (isset($user) && $user) : ?>
                 <li><a href="">Bienvenue <?= $user->getFirstname() ?></a></li>
-                <? if ($user->getRoles() == 'SUPER_ADMIN' ||
+                <?php if ($user->getRoles() == 'SUPER_ADMIN' ||
                     $user->getRoles() == 'ADMIN'
                 ) : ?>
                     <li><a href="<?= $this->getUrl('admin', 'index') ?>">Administration</a></li>
-                <? endif ?>
+                <?php endif ?>
                 <li><a href="<?= $this->getUrl('user', 'logout') ?>">Se déconnecter</a></li>
-            <? else : ?>
+            <?php else : ?>
 
                 <li><a href="<?= $this->getUrl('user', 'login') ?>">Connexion</a></li>
                 <li><a href="<?= $this->getUrl('user', 'register') ?>">Créer un compte</a></li>
 
-            <? endif ?>
+            <?php endif ?>
         </ul>
     </div><!--/.nav-collapse -->
     </div>
