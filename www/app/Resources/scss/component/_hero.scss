@@ -1,0 +1,18 @@
+//Hero section
+
+  .hero{
+    background-size: cover;
+    background: url(/images/hero.jpg) no-repeat 50% 26%;
+    width: 100%;
+    padding-top: 100px;
+    text-align: center;
+    color: #fff;
+    h1{
+      font-family: "Cardo", cursive ;
+    }
+    h2 {
+     padding-left: 188px;
+      padding-bottom: 100px;
+    }
+  }
+

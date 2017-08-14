@@ -30,6 +30,7 @@ class ArticleController extends FrontController
                         ->setBilletId($id)
                     ;
                     $newComments->save($newComments);
+                    $this->router->redirect('article', 'show', ['id' => $id], 301);
 
                 }else {
                     throw new \Exception('Vous devez vous connecter pour poster un commentaire');

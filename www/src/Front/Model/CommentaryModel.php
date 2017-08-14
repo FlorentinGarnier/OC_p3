@@ -172,7 +172,7 @@ LEFT JOIN `billet` AS b ON c1.billet_id = b.id
     public function findByArticleId($id)
     {
         $statement = $this->database->prepare("
-        SELECT c.comment, c.id, c.user_id, c.billet_id, DATE_FORMAT(c.createdAt, '%e-%m-%Y à %T:%i') as createdAt, c.commentary_id, u.firstname, u.lastname 
+        SELECT c.comment, c.id, c.user_id, c.billet_id, c.createdAt, c.commentary_id, u.firstname, u.lastname 
         FROM `commentary` AS c 
         LEFT JOIN `user` as u ON c.user_id = u.id
         LEFT JOIN `commentary` as c2 ON c.commentary_id = c2.id

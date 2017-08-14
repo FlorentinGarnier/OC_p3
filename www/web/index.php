@@ -6,6 +6,8 @@ use app\Autoloader;
 use app\Request;
 use app\Router;
 
+date_default_timezone_set("Europe/Paris");
+
 const __ROOT_DIR__ = __DIR__ . "/../";
 
 require '../app/Autoloader.php';

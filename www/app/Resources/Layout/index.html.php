@@ -32,42 +32,42 @@
 
 <body>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="<?= $this->getUrl('article', 'index') ?>">Billet simple pour l'Alaska</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <? if (isset($user) && $user) :?>
-                    <li><a href="">Bienvenue <?= $user->getFirstname() ?></a></li>
-                    <? if ($user->getRoles() == 'SUPER_ADMIN' ||
-                            $user->getRoles() == 'ADMIN') : ?>
-                        <li><a href="<?= $this->getUrl('admin', 'index') ?>">Administration</a></li>
-                        <? endif ?>
-                    <li><a href="<?= $this->getUrl('user', 'logout') ?>">Se déconnecter</a></li>
-                <? else : ?>
-
-                    <li><a href="<?= $this->getUrl('user', 'login') ?>">Connexion</a></li>
-                    <li><a href="<?= $this->getUrl('user', 'register') ?>">Créer un compte</a></li>
-
+        <ul class="nav navbar-nav navbar-right">
+            <? if (isset($user) && $user) : ?>
+                <li><a href="">Bienvenue <?= $user->getFirstname() ?></a></li>
+                <? if ($user->getRoles() == 'SUPER_ADMIN' ||
+                    $user->getRoles() == 'ADMIN'
+                ) : ?>
+                    <li><a href="<?= $this->getUrl('admin', 'index') ?>">Administration</a></li>
                 <? endif ?>
-            </ul>
-        </div><!--/.nav-collapse -->
+                <li><a href="<?= $this->getUrl('user', 'logout') ?>">Se déconnecter</a></li>
+            <? else : ?>
+
+                <li><a href="<?= $this->getUrl('user', 'login') ?>">Connexion</a></li>
+                <li><a href="<?= $this->getUrl('user', 'register') ?>">Créer un compte</a></li>
+
+            <? endif ?>
+        </ul>
+    </div><!--/.nav-collapse -->
     </div>
 </nav>
+
+<div class="container-fluid ">
+    <div class="row">
+        <div class="hero">
+            <h1 data-content="Jean Forteroche">
+                Jean Forteroche
+            </h1>
+            <h2 data-content="Billet simple pour l'Alaska">
+                Billet simple pour l'Alaska
+            </h2>
+        </div>
+
+
+    </div>
+</div>
 
 
 <div class="container">

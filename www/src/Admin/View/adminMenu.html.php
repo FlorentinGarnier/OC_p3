@@ -1,5 +1,6 @@
 <nav class="menu">
     <ul class="nav nav-pills nav-stacked">
+        <li><a href="<?= $this->getUrl('article', 'index') ?>">Retourner sur le site</a></li>
         <li role="presentation" class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 Articles <span class="caret"></span>

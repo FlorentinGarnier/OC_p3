@@ -13,7 +13,7 @@ class Application
     const __ROOT_DIR__ = __DIR__ . "/../";
 
     /**
-     * @var $get array
+     * @var Router
      */
     private $router;
 
@@ -29,6 +29,28 @@ class Application
         $this->setRouter($router);
 
     }
+
+    /**
+     * Generate Url to controller in front
+     *
+     * @param $controller
+     * @param $action
+     * @param array $param
+     * @return string
+     */
+    public function getUrl($controller, $action, $params = [])
+    {
+        $results = null;
+        if ($params){
+            foreach ($params as $k => $param){
+
+                $results .= '&' .$k . '=' .$param;
+            }
+        }
+
+        return 'http://'. $_SERVER['SERVER_NAME'] . '/index.php?controller='. $controller .'&action='. $action . $results ;
+    }
+
 
     /**
      * @return array

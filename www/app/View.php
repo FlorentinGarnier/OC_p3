@@ -58,6 +58,7 @@ class View implements ViewInterface
      * @param $controller
      * @param $action
      * @param array $param
+     * @return string
      */
     public function getUrl($controller, $action, $params = [])
     {
@@ -69,7 +70,7 @@ class View implements ViewInterface
             }
         }
 
-        echo 'http://'. $_SERVER['SERVER_NAME'] . '/index.php?controller='. $controller .'&action='. $action . $results ;
+        return 'http://'. $_SERVER['SERVER_NAME'] . '/index.php?controller='. $controller .'&action='. $action . $results ;
     }
 
 

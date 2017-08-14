@@ -67,13 +67,41 @@ class Router
      * @param array $param
      * @return Response
      */
-    public function redirect($controller, $action, $param = [])
+    public function redirect($controller, $action, $param = [], $code = 200)
     {
-        $controller = $this->controller[$controller];
+        /*$controller = $this->controller[$controller];
         $Controller = new $controller($this->request, new Response(), $this, new View(dirname((new \ReflectionClass($controller))->getFileName())));
 
-        return $Controller->{$action.'Action'}($this->request, $param);
+        return $Controller->{$action.'Action'}($this->request, $param);*/
+
+        header('HTTP/1.0 ' . $code);
+        header("Location: ". $this->getUrl($controller, $action, $param) );
+
+        exit;
+
     }
+
+    /**
+     * Generate Url to controller in front
+     *
+     * @param $controller
+     * @param $action
+     * @param array $param
+     * @return string
+     */
+    public function getUrl($controller, $action, $params = [])
+    {
+        $results = null;
+        if ($params){
+            foreach ($params as $k => $param){
+
+                $results .= '&' .$k . '=' .$param;
+            }
+        }
+
+        return 'http://'. $_SERVER['SERVER_NAME'] . '/index.php?controller='. $controller .'&action='. $action . $results ;
+    }
+
 
     /**
      * @param $param

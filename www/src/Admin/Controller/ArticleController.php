@@ -50,6 +50,10 @@ class ArticleController extends AbstractController
                 if ($request->isPost()) {
                     $billet = new BilletModel(new Database());
 
+                    if ($request->getPost('illustration')) {
+
+                    }
+
                     $billet
                         ->setTitle($request->getPost('title'))
                         ->setContent($request->getPost('content'))

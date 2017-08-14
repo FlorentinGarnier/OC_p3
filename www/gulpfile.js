@@ -14,8 +14,9 @@ var gulp = require('gulp'),
 
 
 var config = {
-    sassPath: './web/scss/',
+    sassPath: './app/Resources/scss',
     bowerDir: './bower_components',
+    jsDir: "./app/Resources/javascripts",
     destPath: './web/assets/'
 };
 
@@ -44,7 +45,7 @@ gulp.task('sass', function () {
 });
 
 gulp.task('js', function () {
-    return gulp.src([config.bowerDir + '/jquery/dist/jquery.js', config.bowerDir + '/bootstrap-sass/assets/javascripts/bootstrap.js', 'app/scripts/lib/*.js'])
+    return gulp.src([config.bowerDir + '/jquery/dist/jquery.js', config.bowerDir + '/bootstrap-sass/assets/javascripts/bootstrap.js', config.jsDir + '/**/*.js'])
         .pipe(uglify())
         .pipe(concat('main.js'))
         .pipe(gulp.dest(config.destPath + 'js/'))

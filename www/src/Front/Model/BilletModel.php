@@ -27,6 +27,11 @@ class BilletModel extends AbstractModel
 
     private $user_id;
 
+    /**
+     * @var string
+     */
+    private $illustration;
+
 
     public function save(BilletModel $billetModel)
     {
@@ -171,6 +176,24 @@ SET title = ?, content = ?, createdAt =  NOW()
     public function setId($id)
     {
         $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIllustration()
+    {
+        return $this->illustration;
+    }
+
+    /**
+     * @param string $illustration
+     * @return $this
+     */
+    public function setIllustration($illustration)
+    {
+        $this->illustration = $illustration;
+        return $this;
     }
 
 }

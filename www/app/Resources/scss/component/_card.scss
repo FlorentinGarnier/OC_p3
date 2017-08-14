@@ -1,0 +1,14 @@
+//Card
+
+.panel{
+  .card{
+    text-align: right;
+    height: 250px;
+    a:hover{
+      text-decoration: none;
+    }
+  }
+  .card-back{
+    display: none;
+  }
+}

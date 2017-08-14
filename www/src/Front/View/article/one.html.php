@@ -14,8 +14,8 @@
         <?php foreach ($comments as $comment) : ?>
         <div class="row">
             <div class="col-xs-12">
-                <h3><?= $comment->getFirstname() . ' ' . $comment->getLastname() ?></h3>
-                <em>Le <?= $comment->getCreatedAt() ?></em>
+                <h4><?= $comment->getFirstname() . ' ' . $comment->getLastname() ?></h4>
+                <em>Le <?= date( "d-m-Y à H:i",strtotime($comment->getCreatedAt())) ?></em>
                 <p><?= $comment->getComment() ?></p>
             </div>
         </div>

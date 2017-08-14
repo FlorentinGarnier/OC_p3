@@ -23,10 +23,16 @@ class Response
         $this->content = $content;
     }
 
+    /**
+     * Last action
+     */
     public function takeOff()
     {
         echo $this->getContent();
+        exit;
     }
+
+
 
 
 }
