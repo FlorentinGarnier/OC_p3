@@ -1,15 +1,48 @@
 //Card
 
-.panel{
-  .card{
+.card{
+  overflow: hidden;
+
+  .card__face{
     text-align: right;
-    height: 250px;
-    a:hover{
-      text-decoration: none;
+    min-height: 250px;
+    transition: all 0.5s ease;
+    &:before{
+      content: "";
+      display: none;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: rgba(52,73,94,0.75);
+    }
+    a{
+      color: #fff;
+      text-align: center;
+      transform: none;
+      display: none;
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      height: 50px;
+      margin: auto;
+    }
+    &:hover{
+      a{
+        display: block;
+      }
+      transform: scale(1.2);
+    }
+
+  }
+  &:hover{
+    .card__face:before {
+      display: block;
     }
   }
-  .card-back{
-    display: none;
-  }
+
 }
 

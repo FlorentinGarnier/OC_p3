@@ -3,7 +3,7 @@
         <?php include_once 'adminMenu.html.php'?>
     </div>
     <div class="col-sm-9">
-        <form action="" method="post">
+        <form action="" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="title">Titre</label>
                 <input type="text" class="form-control" name="title" id="title" value="<?= isset($billet) ? $billet->getTitle() : '' ?>">
@@ -11,6 +11,7 @@
             <div class="form-group">
                 <label for="illustration">Illustration</label>
                 <input type="file" name="illustration" id="illustration">
+                <input type="hidden" name="MAX_FILE_SIZE" value="100000">
             </div>
             <div class="form-group">
                 <label for="content">Corps</label>

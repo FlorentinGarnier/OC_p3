@@ -39,22 +39,24 @@ class BilletModel extends AbstractModel
             $statement = $this->database->prepare(
                 '
 INSERT INTO billet
-SET title = ?, content = ?, createdAt =  NOW()
+SET title = ?, content = ?, illustration =?, createdAt =  NOW()
 ');
 
             $statement->execute([
                 $billetModel->getTitle(),
                 $billetModel->getContent(),
+                $billetModel->getIllustration()
 
             ]);
         } else {
             $statement = $this->database->prepare("
-            UPDATE billet SET title = ?, content = ?, updatedAt = NOW() WHERE id = ".  $billetModel->getId()
+            UPDATE billet SET title = ?, content = ?, illustration = ?, updatedAt = NOW() WHERE id = ".  $billetModel->getId()
             );
 
             $statement->execute([
                 $billetModel->getTitle(),
-                $billetModel->getContent()
+                $billetModel->getContent(),
+                $billetModel->getIllustration()
             ]);
         }
         return $this;

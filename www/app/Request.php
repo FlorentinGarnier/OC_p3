@@ -20,6 +20,8 @@ class Request
 
     private $session;
 
+    private $file;
+
 
 
 
@@ -158,6 +160,21 @@ class Request
         return false;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * @param mixed $file
+     */
+    public function setFile($file)
+    {
+        $this->file = $file;
+    }
 
 
 }

@@ -50,7 +50,33 @@ class ArticleController extends AbstractController
                 if ($request->isPost()) {
                     $billet = new BilletModel(new Database());
 
-                    if ($request->getPost('illustration')) {
+                    if (isset($_FILES['illustration']) && !empty($_FILES['illustration'])) {
+                        $file = 'images/upload/';
+                        $illustration = basename($_FILES['illustration']['name']);
+                        $max_size = 500000;
+                        $size = filesize($_FILES['illustration']['tmp_name']);
+                        $extensions = ['.png', '.gif', '.jpg', '.jpeg'];
+                        $extension = strrchr($_FILES['illustration']['name'], '.');
+
+                        if(!in_array($extension, $extensions)){
+                            throw new \Exception("Votre fichier n'est pas une image");
+                        }
+
+                        if($size>$max_size){
+                            throw new \Exception("Le fichier est trop volumineux");
+                        }
+
+                        $illustration = strtr($illustration,
+                            'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ',
+                            'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
+
+                        $illustration = preg_replace('/([^.a-z0-9]+)/i', '-', $illustration);
+
+                        if (!move_uploaded_file($_FILES['illustration']['tmp_name'], $file . $illustration)){
+                            throw new \Exception("Upload impossible");
+                        }
+
+                        $billet->setIllustration($illustration);
 
                     }
 
@@ -89,7 +115,35 @@ class ArticleController extends AbstractController
                 $billet = $billetModel->findOne($request->getParam('id'));
 
                 if ($request->isPost()) {
+                    if (isset($_FILES['illustration']) && !empty($_FILES['illustration']['name'])) {
+                        $file = __ROOT_DIR__ . 'web/images/upload/';
+                        $illustration = basename($_FILES['illustration']['name']);
+                        $max_size = 500000;
+                        $size = filesize($_FILES['illustration']['tmp_name']);
+                        $extensions = ['.png', '.gif', '.jpg', '.jpeg'];
+                        $extension = strrchr($_FILES['illustration']['name'], '.');
 
+                        if(!in_array($extension, $extensions)){
+                            throw new \Exception("Votre fichier n'est pas une image");
+                        }
+
+                        if($size>$max_size){
+                            throw new \Exception("Le fichier est trop volumineux");
+                        }
+
+                        $illustration = strtr($illustration,
+                            'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ',
+                            'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
+
+                        $illustration = preg_replace('/([^.a-z0-9]+)/i', '-', $illustration);
+
+                        if (!move_uploaded_file($_FILES['illustration']['tmp_name'], $file . $illustration)){
+                            throw new \Exception("Upload impossible");
+                        }
+
+                        $billet->setIllustration($illustration);
+
+                    }
 
                     $billet
                         ->setTitle($request->getPost('title'))
