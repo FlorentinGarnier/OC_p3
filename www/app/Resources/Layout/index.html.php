@@ -35,6 +35,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <ul class="nav navbar-nav navbar-right">
+            <li><a href="<?= $this->getUrl('article', 'index') ?>">Accueil</a></li>
             <?php if (isset($user) && $user) : ?>
                 <li><a href="">Bienvenue <?= $user->getFirstname() ?></a></li>
                 <?php if ($user->getRoles() == 'SUPER_ADMIN' ||
