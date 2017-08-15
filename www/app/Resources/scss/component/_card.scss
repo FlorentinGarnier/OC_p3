@@ -30,7 +30,7 @@
       height: 50px;
       margin: auto;
     }
-    &:hover{
+    &:hover, &:focus{
       a{
         display: block;
       }
@@ -38,11 +38,12 @@
     }
 
   }
-  &:hover{
+  &:hover, &:focus{
     .card__face:before {
       display: block;
     }
   }
 
 }
+
 
