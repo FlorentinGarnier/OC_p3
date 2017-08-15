@@ -45,7 +45,12 @@ gulp.task('sass', function () {
 });
 
 gulp.task('js', function () {
-    return gulp.src([config.bowerDir + '/jquery/dist/jquery.js', config.bowerDir + '/bootstrap-sass/assets/javascripts/bootstrap.js', config.jsDir + '/**/*.js'])
+    return gulp.src([
+        config.bowerDir + '/jquery/dist/jquery.js',
+        config.bowerDir + '/bootstrap-sass/assets/javascripts/bootstrap.js',
+        //config.bowerDir + '/tinymce/tinymce.js',
+        config.jsDir + '/**/*.js'
+    ])
         .pipe(uglify())
         .pipe(concat('main.js'))
         .pipe(gulp.dest(config.destPath + 'js/'))
