@@ -1,13 +1,12 @@
 //Card
-
-.card{
+.card {
   overflow: hidden;
-
-  .card__face{
+  margin-bottom: $grid-gutter-width;
+  .card__face {
     text-align: right;
     min-height: 250px;
     transition: all 0.5s ease;
-    &:before{
+    &:before {
       content: "";
       display: none;
       height: 100%;
@@ -15,9 +14,9 @@
       position: absolute;
       top: 0;
       left: 0;
-      background-color: rgba(52,73,94,0.75);
+      background-color: rgba(52, 73, 94, 0.75);
     }
-    a{
+    a {
       color: #fff;
       text-align: center;
       transform: none;
@@ -30,21 +29,32 @@
       height: 50px;
       margin: auto;
     }
-    &:hover, &:focus, &:active{
-      a{
+    &:hover, &:focus, &:active {
+      a {
         display: block;
       }
       transform: scale(1.2);
       &:before {
         display: block;
-    }
-
-
-
+      }
     }
   }
-
-
 }
+
+@media screen and (max-width: $screen-sm) {
+  .card {
+    overflow: hidden;
+    .card__face {
+      &:before {
+        display: block;
+      }
+      a {
+        display: block;
+      }
+    }
+  }
+}
+
+
 
 

@@ -307,10 +307,6 @@ SET comment = ?, user_id = ?, billet_id = ?, signalement = ?, updatedAt =  NOW()
                 $commentaryModel->getSignalement()
             ]);
         }
-
-
-
-
         return true;
 
     }
