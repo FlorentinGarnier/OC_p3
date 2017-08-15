@@ -13,6 +13,9 @@
                         <h4><?= $comment->getFirstname() . ' ' . $comment->getLastname() ?></h4>
                         <em>Le <?= date("d-m-Y à H:i", strtotime($comment->getCreatedAt())) ?></em>
                         <p><?= $comment->getComment() ?></p>
+                        <div class="text-right">
+                            <a href="<?= $this->getUrl('signal_comment', 'signal', ['id' => $comment->getId()]) ?>">Signaler le commentaire</a>
+                        </div>
                     </div>
                 </div>
             <?php endforeach ?>

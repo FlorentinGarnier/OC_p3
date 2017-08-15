@@ -1,3 +1,11 @@
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="text-center">
+            <h3>Connectez-vous!</h3>
+        </div>
+    </div>
+</div>
 <div class="row">
     <div class="col-xs-12">
         <form action="" method="POST">

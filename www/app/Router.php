@@ -69,13 +69,14 @@ class Router
      */
     public function redirect($controller, $action, $param = [], $code = 200)
     {
-        /*$controller = $this->controller[$controller];
+        /*unset($_POST);
+        $controller = $this->controller[$controller];
         $Controller = new $controller($this->request, new Response(), $this, new View(dirname((new \ReflectionClass($controller))->getFileName())));
 
-        return $Controller->{$action.'Action'}($this->request, $param);*/
+        return $Controller->{$action.'Action'}($this->request, $param);
 
-        header('HTTP/1.0 ' . $code);
-        header("Location: ". $this->getUrl($controller, $action, $param) );
+        //header('HTTP/1.0 ' . $code);*/
+        header("Location: ". $this->getUrl($controller, $action, $param), $code );
 
         exit;
 

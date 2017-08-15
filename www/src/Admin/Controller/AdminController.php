@@ -22,7 +22,7 @@ class AdminController extends AbstractController
             if ($this->user->getRoles() === 'ADMIN' ||
                 $this->user->getRoles() === 'SUPER_ADMIN') {
                 $commentaryModel = new CommentaryModel(new Database());
-                $commentaries = $commentaryModel->findAll();
+                $commentaries = $commentaryModel->findAll("ORDER BY signalement DESC");
 
                 return $this->render(':index', ['commentaries' => $commentaries]);
             } else {

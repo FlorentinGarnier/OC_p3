@@ -43,6 +43,12 @@ class CommentaryModel extends AbstractModel
      */
     private $billet_id;
 
+    /**
+     * @var int
+     */
+    private $signalement;
+
+
 
     /**
      * @return mixed
@@ -157,7 +163,7 @@ class CommentaryModel extends AbstractModel
 SELECT c1.*, u.firstname AS firstname, u.lastname AS lastname, b.title AS title, u.id AS uid, b.id AS bid  FROM `commentary` AS c1 
 LEFT JOIN `user` AS u ON c1.user_id = u.id
 LEFT JOIN `billet` AS b ON c1.billet_id = b.id
-");
+" . $option);
 
         $data = [];
 
@@ -279,20 +285,52 @@ LEFT JOIN `billet` AS b ON c1.billet_id = b.id
 
     public function save(CommentaryModel $commentaryModel)
     {
-        $statement = $this->database->prepare(
-            '
+        if (!$commentaryModel->getId()){
+            $statement = $this->database->prepare(
+                '
 INSERT INTO commentary
 SET comment = ?, user_id = ?, billet_id = ?, createdAt =  NOW()
 ');
-
-        $statement->execute([
-            $commentaryModel->getComment(),
-            $commentaryModel->getUserId(),
-            $commentaryModel->getBilletId()
+            $statement->execute([
+                $commentaryModel->getComment(),
+                $commentaryModel->getUserId(),
+                $commentaryModel->getBilletId(),
             ]);
+        } else {
+            $statement = $this->database->prepare(
+                "
+UPDATE commentary
+SET comment = ?, user_id = ?, billet_id = ?, signalement = ?, updatedAt =  NOW() WHERE id = ".$commentaryModel->getId());$statement->execute([
+                $commentaryModel->getComment(),
+                $commentaryModel->getUserId(),
+                $commentaryModel->getBilletId(),
+                $commentaryModel->getSignalement()
+            ]);
+        }
+
+
+
 
         return true;
 
+    }
+
+    /**
+     * @return int
+     */
+    public function getSignalement()
+    {
+        return $this->signalement;
+    }
+
+    /**
+     * @param int $signalement
+     * @return $this
+     */
+    public function setSignalement($signalement)
+    {
+        $this->signalement = $signalement;
+        return $this;
     }
 
 

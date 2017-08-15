@@ -5,7 +5,7 @@ namespace app;
 use app\Interfaces\ModelInterface;
 use PDO;
 
-abstract class AbstractModel implements ModelInterface
+abstract class AbstractModel extends Application implements ModelInterface
 {
 
     protected $id;
@@ -32,6 +32,10 @@ abstract class AbstractModel implements ModelInterface
         return $data;
     }
 
+    /**
+     * @param $id
+     * @return ModelInterface
+     */
     public function findOne($id)
     {
         $statement =$this->database->prepare("SELECT * FROM $this->entity WHERE `id` = ?");

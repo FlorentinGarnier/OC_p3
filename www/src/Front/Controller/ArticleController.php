@@ -38,8 +38,7 @@ class ArticleController extends FrontController
             }
         } catch (\Exception $exception) {
             $request->setSession('message', 'danger', $exception->getMessage());
-            return
-                $this->router->redirect('article', 'index');
+            return $this->router->redirect('article', 'index');
         }
         return
             $this->render(':article:one', [

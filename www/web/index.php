@@ -23,6 +23,7 @@ $router->add('article', 'src\\Front\\Controller\\ArticleController');
 $router->add('admin', 'src\\Admin\\Controller\\AdminController');
 $router->add('user', 'src\\User\\Controller\\UserController');
 $router->add('admin_article', 'src\\Admin\\Controller\\ArticleController');
+$router->add('signal_comment', 'src\\Front\\Controller\\CommentController');
 
 $app = new Application($router);
 

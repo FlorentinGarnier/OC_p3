@@ -30,6 +30,8 @@ class Application
 
     }
 
+
+
     /**
      * Generate Url to controller in front
      *

@@ -6,7 +6,7 @@ namespace app;
 use app\Interfaces\ViewInterface;
 use src\User\Model\UserModel;
 
-abstract class AbstractController
+abstract class AbstractController extends Application
 {
 
     protected $request;
