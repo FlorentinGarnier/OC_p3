@@ -7,11 +7,13 @@ This application was performed as part of my studies with OpenClassrooms for Dig
 Installation
 ------------
 
-You can use Vagrant to easier set the dev environnement.
+You can use Docker to easier set the dev environnement. A SQL dump is provided to setup an example.
 
-`vagrant up`
+`docker-compose up -d`
 
 ### Install
+
+`cd www`
 
 `composer install`
 
@@ -20,6 +22,6 @@ You can use Vagrant to easier set the dev environnement.
 
 `bower install`
 
-`gulp sass`
+`gulp`
 
 
