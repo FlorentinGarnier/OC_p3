@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-sm-3">
-        <? include_once 'adminMenu.html.php' ?>
+        <?php include_once 'adminMenu.html.php' ?>
     </div>
     <div class="col-sm-9">
         <div class="row">
