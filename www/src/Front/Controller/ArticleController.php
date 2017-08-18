@@ -21,7 +21,7 @@ class ArticleController extends FrontController
             $commentaryEntity = new CommentaryModel(new Database());
             $comments = $commentaryEntity->findByArticleId($id);
             $billet = $billetEntity->findOne($id);
-            if ($request->isPost() && !empty($request->getPost('comment')) ){
+            if ($request->isPost() && !empty(trim($request->getPost('comment'))) ){
                 if ($request->getSession('user')){
                     $newComments = new CommentaryModel(new Database());
                     $newComments
