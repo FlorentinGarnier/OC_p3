@@ -6,3 +6,4 @@ ubuntu-xenial-16.04-cloudimg-console.log
 /www/bower_components/
 /www/web/assets/
 /www/web/images/upload/
+/utils/docker/local/
