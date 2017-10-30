@@ -62,6 +62,14 @@ services:
       links:
         - mysql
 
+    gulp:
+      build: node
+      container_name: ${PROJECT}-node
+      working_dir: /www
+      volumes:
+        - ../../../www:/www
+
+
 networks:
   default:
     external:

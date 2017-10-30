@@ -7,3 +7,5 @@ ubuntu-xenial-16.04-cloudimg-console.log
 /www/web/assets/
 /www/web/images/upload/
 /utils/docker/local/
+/utils/docker/prod/.env
+/utils/docker/prod/data/
