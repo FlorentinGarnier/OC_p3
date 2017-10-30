@@ -68,6 +68,7 @@ services:
       working_dir: /www
       volumes:
         - ../../../www:/www
+      restart: always
 
 
 networks:
