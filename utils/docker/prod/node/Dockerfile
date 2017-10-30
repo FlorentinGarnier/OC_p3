@@ -1,7 +1,7 @@
 FROM node:latest
 
-RUN npm install -g gulp bower \
-&&  npm install gulp -D
+RUN npm install -g bower gulp\
+&& npm install
 
 ENV user node
 USER $user
