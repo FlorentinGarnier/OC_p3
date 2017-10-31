@@ -63,12 +63,12 @@ services:
         - mysql
 
     gulp:
-      build: node
-      container_name: ${PROJECT}-node
+      image: node
       working_dir: /www
+      container_name: ${PROJECT}-node
       volumes:
         - ../../../www:/www
-      restart: always
+      command: bash -c "npm install && npm install -g gulp && gulp"
 
 
 networks:
