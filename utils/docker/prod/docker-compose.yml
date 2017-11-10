@@ -2,7 +2,7 @@ version: "2"
 services:
     mysql:
       image: mysql:5.7
-      container_name: ${PROJECT}-mysql
+      container_name: ${COMPOSE_PROJECT_NAME}-mysql
       volumes:
         - ./data/mysql:/var/lib/mysql
       environment:
@@ -10,12 +10,13 @@ services:
         - MYSQL_DATABASE=${MYSQL_DATABASE}
         - MYSQL_USER=${MYSQL_USER}
         - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-
+      networks:
+        - default
 
 
     webserver:
       image: nginx
-      container_name: ${PROJECT}-webserver
+      container_name: ${COMPOSE_PROJECT_NAME}-webserver
       working_dir: /www
       volumes:
           - ../../../www:/www
@@ -34,24 +35,28 @@ services:
 
     php-fpm:
       build: php-fpm
-      container_name: ${PROJECT}-php-fpm
+      container_name: ${COMPOSE_PROJECT_NAME}-php-fpm
       working_dir: /www
       restart: always
       volumes:
         - ../../../www:/www
         - ./php-fpm/php.ini:/usr/local/etc/php/php.ini
+      networks:
+        - default
       links:
         - mysql
 
     phpmyadmin:
       image: phpmyadmin/phpmyadmin
-      container_name: ${PROJECT}-phpmyadmin
+      container_name: ${COMPOSE_PROJECT_NAME}-phpmyadmin
       environment:
         - VIRTUAL_HOST=pma.${VIRTUAL_HOST}
         - LETSENCRYPT_HOST=pma.${VIRTUAL_HOST}
         - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
         - PMA_HOST=mysql
       restart: always
+      networks:
+        - default
       volumes:
         - /sessions
       links:
@@ -60,7 +65,7 @@ services:
     gulp:
       image: node
       working_dir: /www
-      container_name: ${PROJECT}-node
+      container_name: ${COMPOSE_PROJECT_NAME}-node
       volumes:
         - ../../../www:/www
       command: bash -c "npm install && npm install -g gulp && gulp"
