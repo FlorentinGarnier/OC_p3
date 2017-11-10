@@ -10,8 +10,7 @@ services:
         - MYSQL_DATABASE=${MYSQL_DATABASE}
         - MYSQL_USER=${MYSQL_USER}
         - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      networks:
-        - default
+
 
 
     webserver:
@@ -41,8 +40,6 @@ services:
       volumes:
         - ../../../www:/www
         - ./php-fpm/php.ini:/usr/local/etc/php/php.ini
-      networks:
-        - default
       links:
         - mysql
 
@@ -55,8 +52,6 @@ services:
         - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
         - PMA_HOST=mysql
       restart: always
-      networks:
-        - default
       volumes:
         - /sessions
       links:
